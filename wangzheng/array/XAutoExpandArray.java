@@ -1,9 +1,9 @@
 package array;
 
-import java.util.Arrays;
+import utils.PrintUtil;
 
 // 实现一个支持动态扩容的数组
-public class XArray {
+public class XAutoExpandArray {
 
     public int[] data;
 
@@ -11,7 +11,7 @@ public class XArray {
 
     public int cnt;
 
-    public XArray(int capacity) {
+    public XAutoExpandArray(int capacity) {
         this.data = new int[capacity];
         this.len = capacity;
         this.cnt = 0;
@@ -34,12 +34,10 @@ public class XArray {
     }
 
     public static void main(String[] args) {
-        XArray xArray = new XArray(2);
+        XAutoExpandArray xAutoExpandArray = new XAutoExpandArray(2);
         for (int i = 1; i <= 10; i++) {
-            xArray.insert(i);
+            xAutoExpandArray.insert(i);
         }
-        for (int datum : xArray.data) {
-            System.out.println(datum);
-        }
+        PrintUtil.printArray(xAutoExpandArray.data);
     }
 }

@@ -1,6 +1,6 @@
 package queue;
 
-public class XQueue {
+public class XCircularQueue {
 
     public static void main(String[] args) {
 

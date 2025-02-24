@@ -1,6 +1,6 @@
-package stack;
+package queue;
 
-public class XStack {
+public class XArrayQueue {
 
     public static void main(String[] args) {
 

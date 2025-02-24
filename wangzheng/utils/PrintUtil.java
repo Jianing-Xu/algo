@@ -19,6 +19,16 @@ class Trunk {
 };
 
 public class PrintUtil {
+
+    /* 打印数组 */
+    public static void printArray(int[] arr) {
+        System.out.print("[");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println("]");
+    }
+
     /* 打印矩阵（Array） */
     public static <T> void printMatrix(T[][] matrix) {
         System.out.println("[");
