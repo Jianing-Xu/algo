@@ -16,7 +16,19 @@ public class XFixedSortedArray {
 
     public boolean insert(int val) {
         if (cnt == data.length) return false;
-        data[cnt++] = val;
+        if (cnt == 0) {
+            data[cnt++] = val;
+            return true;
+        }
+        for (int i = cnt; i > 0; i--) {
+            if (data[i - 1] > val) {
+                data[i] = data[i - 1];
+            } else {
+                data[i] = val;
+                break;
+            }
+        }
+        cnt++;
         return true;
     }
 
