@@ -8,6 +8,17 @@ import utils.PrintUtil;
  */
 public class XSorts {
 
+  public static void main(String[] args) {
+    int[] arr = new int[]{4, 5, 6, 1, 3, 2};
+    XSorts xSorts = new XSorts();
+    // xSorts.bubbleSort(arr);
+    // xSorts.insertSort(arr);
+    // xSorts.selectSort(arr);
+    // xSorts.mergeSort(arr, 0, arr.length - 1);
+    xSorts.quickSort(arr, 0, arr.length - 1);
+    PrintUtil.printArray(arr);
+  }
+
   public void bubbleSort(int[] arr) {
     int n = arr.length;
     if (n <= 1) {
@@ -121,19 +132,8 @@ public class XSorts {
   }
 
   public void swap(int[] arr, int i, int j) {
-      int temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
-  }
-
-  public static void main(String[] args) {
-    int[] arr = new int[]{4, 5, 6, 1, 3, 2};
-    XSorts xSorts = new XSorts();
-    // xSorts.bubbleSort(arr);
-    // xSorts.insertSort(arr);
-    // xSorts.selectSort(arr);
-    // xSorts.mergeSort(arr, 0, arr.length - 1);
-    xSorts.quickSort(arr, 0, arr.length - 1);
-    PrintUtil.printArray(arr);
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
   }
 }

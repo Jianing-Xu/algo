@@ -1,7 +1,6 @@
 package linkedlist;
 
 import utils.ListNode;
-import utils.PrintUtil;
 
 // 循环链表
 public class XCircularLinkedList {
@@ -14,6 +13,14 @@ public class XCircularLinkedList {
     head = listNode;
     tail = listNode;
     tail.next = head;
+  }
+
+  public static void main(String[] args) {
+    XCircularLinkedList list = new XCircularLinkedList();
+    list.insertTail(1);
+    list.insertTail(2);
+    list.insertTail(3);
+    list.delete(2);
   }
 
   public void insertTail(int value) {
@@ -34,13 +41,5 @@ public class XCircularLinkedList {
         break;
       }
     }
-  }
-
-  public static void main(String[] args) {
-    XCircularLinkedList list = new XCircularLinkedList();
-    list.insertTail(1);
-    list.insertTail(2);
-    list.insertTail(3);
-    list.delete(2);
   }
 }
