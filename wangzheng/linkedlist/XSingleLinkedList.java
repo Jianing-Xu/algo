@@ -48,12 +48,12 @@ public class XSingleLinkedList {
     }
 
     public static void main(String[] args) {
-        XSingleLinkedList xSingleLinkedList = new XSingleLinkedList();
-        xSingleLinkedList.insertToHead(1);
-        xSingleLinkedList.insertToHead(2);
-        xSingleLinkedList.insertToHead(3);
-        PrintUtil.printLinkedList(xSingleLinkedList.head);
-        xSingleLinkedList.delete(2);
-        PrintUtil.printLinkedList(xSingleLinkedList.head);
+        XSingleLinkedList list = new XSingleLinkedList();
+        list.insertToHead(1);
+        list.insertToHead(2);
+        list.insertToHead(3);
+        PrintUtil.printLinkedList(list.head);
+        list.delete(2);
+        PrintUtil.printLinkedList(list.head);
     }
 }

@@ -37,10 +37,10 @@ public class XCircularLinkedList {
   }
 
   public static void main(String[] args) {
-    XCircularLinkedList xCircularLinkedList = new XCircularLinkedList();
-    xCircularLinkedList.insertTail(1);
-    xCircularLinkedList.insertTail(2);
-    xCircularLinkedList.insertTail(3);
-    xCircularLinkedList.delete(2);
+    XCircularLinkedList list = new XCircularLinkedList();
+    list.insertTail(1);
+    list.insertTail(2);
+    list.insertTail(3);
+    list.delete(2);
   }
 }
