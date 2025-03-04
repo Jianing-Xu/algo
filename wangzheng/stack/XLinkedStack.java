@@ -9,7 +9,7 @@ public class XLinkedStack {
     ListNode top;
     int size;
 
-    public void push(int value) {
+    public boolean push(int value) {
         if (top == null) {
             top = new ListNode(value);
         } else {
@@ -18,6 +18,7 @@ public class XLinkedStack {
             top = node;
         }
         size++;
+        return true;
     }
 
     public int pop() {
@@ -27,7 +28,6 @@ public class XLinkedStack {
             size--;
             return value;
         } else {
-            System.out.println("Stack is empty");
             return -1;
         }
     }

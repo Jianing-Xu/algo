@@ -13,17 +13,16 @@ public class XArrayStack {
         this.size = 0;
     }
 
-    public void push(int value) {
+    public boolean push(int value) {
         if (size == data.length) {
-            System.out.println("Stack is full");
-            return;
+            return false;
         }
         data[size++] = value;
+        return true;
     }
 
     public int pop() {
         if (size == 0) {
-            System.out.println("Stack is empty");
             return -1;
         }
         int datum = data[size - 1];
