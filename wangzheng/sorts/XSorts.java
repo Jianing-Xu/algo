@@ -1,5 +1,7 @@
 package sorts;
 
+import java.util.Arrays;
+
 import utils.PrintUtil;
 
 /**
@@ -8,18 +10,7 @@ import utils.PrintUtil;
  */
 public class XSorts {
 
-  public static void main(String[] args) {
-    int[] arr = new int[]{4, 5, 6, 1, 3, 2};
-    XSorts xSorts = new XSorts();
-    // xSorts.bubbleSort(arr);
-    // xSorts.insertSort(arr);
-    // xSorts.selectSort(arr);
-    // xSorts.mergeSort(arr, 0, arr.length - 1);
-    xSorts.quickSort(arr, 0, arr.length - 1);
-    PrintUtil.printArray(arr);
-  }
-
-  public void bubbleSort(int[] arr) {
+  public static void bubbleSort(int[] arr) {
     int n = arr.length;
     if (n <= 1) {
       return;
@@ -38,7 +29,7 @@ public class XSorts {
     }
   }
 
-  public void selectSort(int[] arr) {
+  public static void selectSort(int[] arr) {
     int n = arr.length;
     if (n <= 1) {
       return;
@@ -55,7 +46,7 @@ public class XSorts {
     }
   }
 
-  public void insertSort(int[] arr) {
+  public static void insertSort(int[] arr) {
     int n = arr.length;
     if (n <= 1) {
       return;
@@ -75,7 +66,7 @@ public class XSorts {
     }
   }
 
-  public void mergeSort(int[] arr, int left, int right) {
+  public static void mergeSort(int[] arr, int left, int right) {
     if (left >= right) {
       return;
     }
@@ -85,7 +76,7 @@ public class XSorts {
     merge(arr, left, mid, right);
   }
 
-  private void merge(int[] arr, int left, int mid, int right) {
+  private static void merge(int[] arr, int left, int mid, int right) {
     int[] temp = new int[right - left + 1];
     int i = left;
     int j = mid + 1;
@@ -108,7 +99,7 @@ public class XSorts {
     }
   }
 
-  public void quickSort(int[] arr, int left, int right) {
+  public static void quickSort(int[] arr, int left, int right) {
     if (left >= right) {
       return;
     }
@@ -117,7 +108,7 @@ public class XSorts {
     quickSort(arr, pivot + 1, right);
   }
 
-  private int partition(int[] arr, int left, int right) {
+  private static int partition(int[] arr, int left, int right) {
     int pivot = arr[right];
     int i = left; // i表示pivot元素在数组中的位置，左边小于pivot的元素，右边大于pivot的元素
     for (int j = left; j < right; j++) {
@@ -131,9 +122,58 @@ public class XSorts {
     return i;
   }
 
-  public void swap(int[] arr, int i, int j) {
-    int temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+  private static void swap(int[] arr, int i, int j) {
+      int temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
   }
+
+    public static void main(String[] args) {
+        // 对数器 生成随机序列，通过一个正确的实现方法和目标方法进行对比
+        int testTime = 500000;     // 测试次数
+        int maxSize = 100;       // 最大测试容量：生成数组的最大容量
+        int maxValue = 100;      // 最大测试数据：生成随机数组中的值（-100~100）
+        boolean succeed = true;  // 是否对比成功
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = generateRandomArray(maxSize, maxValue);// 生成随机数组
+            int[] arr2 = Arrays.copyOf(arr1, arr1.length);
+            bubbleSort(arr1);
+            comparator(arr2);
+            if (!isEqual(arr1, arr2)) {
+                succeed = false;
+                PrintUtil.printArray(arr1);
+                break;
+            }
+        }
+        System.out.println(succeed ? "True！" : "False!");
+
+        int[] arr = generateRandomArray(maxSize, maxValue);
+        PrintUtil.printArray(arr);
+        bubbleSort(arr);
+        PrintUtil.printArray(arr);
+    }
+
+    private static boolean isEqual(int[] arr1, int[] arr2) {
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void comparator(int[] arr) {
+        Arrays.sort(arr);
+    }
+
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+        }
+        return arr;
+    }
 }
