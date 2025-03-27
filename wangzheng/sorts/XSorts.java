@@ -127,6 +127,27 @@ public class XSorts {
     arr[j] = temp;
   }
 
+  public static int findKthLargest(int[] arr, int k) {
+      if (arr == null || arr.length == 0 || k < 0 || k > arr.length) {
+          return -1;
+      }
+      return quickSortKth(arr, 0, arr.length - 1, k - 1);
+  }
+
+    public static int quickSortKth(int[] arr, int left, int right, int k) {
+        if (left == right) {
+            return arr[left];
+        }
+        int pivot = partition(arr, left, right);
+        if (k == pivot) {
+            return arr[pivot];
+        } else if (k < pivot){
+            return quickSortKth(arr, left, pivot - 1, k);
+        } else {
+            return quickSortKth(arr, pivot + 1, right, k);
+        }
+    }
+
   public static void main(String[] args) {
     // 对数器 生成随机序列，通过一个正确的实现方法和目标方法进行对比
     int testTime = 500000;     // 测试次数
