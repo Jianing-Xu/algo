@@ -56,9 +56,9 @@ public class XFixedSortedArray {
   }
 
   public int find(int index) {
-      if (index < 0 || index >= cnt) {
-          return -1;
-      }
+    if (index < 0 || index >= cnt) {
+      return -1;
+    }
     return data[index];
   }
 }
