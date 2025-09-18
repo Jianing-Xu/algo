@@ -1,6 +1,7 @@
 package heap;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Top K 元素问题解决方案
@@ -200,7 +201,12 @@ public class TopKElements {
          * @return Top K元素列表
          */
         public List<Integer> getTopK() {
-            List<Integer> result = new ArrayList<>(minHeap);
+            Integer poll = minHeap.poll();
+            List<Integer> result = new ArrayList<>();
+            while (poll != null) {
+                result.add(poll);
+                poll = minHeap.poll();
+            }
             result.sort(Collections.reverseOrder());
             return result;
         }
