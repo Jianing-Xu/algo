@@ -5,6 +5,9 @@ import java.util.Arrays;
 import sorts.SortingAlgorithms;
 import utils.PrintUtil;
 
+/**
+ * 对数器
+ */
 public class Comparator {
 
     public static void main(String[] args) {
