@@ -742,9 +742,9 @@ public class GraphProblems {
         
         // 课程表性能测试
         System.out.println("课程表性能测试:");
-        int[] courseCounts = {100, 500, 1000};
+        int[] courseCountArr = {100, 500, 1000};
         
-        for (int numCourses : courseCounts) {
+        for (int numCourses : courseCountArr) {
             // 生成随机先修关系
             Random random = new Random();
             int numPrerequisites = numCourses / 2;
