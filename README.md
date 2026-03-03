@@ -20,7 +20,7 @@ algo/
 | [beauty-of-algorithms](./beauty-of-algorithms/) | 王争《数据结构与算法之美》全部核心代码 + LeetCode 推荐题 | 38 |
 | [coding-interview-guide](./coding-interview-guide/) | 《程序员代码面试指南》题型归纳与测试 | 12 |
 | [huawei-od](./huawei-od/) | 华为 OD 机考高频真题题解 | 52 |
-| [jianzhi-offer](./jianzhi-offer/) | 《剑指 Offer》经典题实现与题型归纳 | 30+ |
+| [jianzhi-offer](./jianzhi-offer/) | 《剑指 Offer》经典题实现与题型归纳 | 50+ |
 
 ## 🛠️ 技术栈
 

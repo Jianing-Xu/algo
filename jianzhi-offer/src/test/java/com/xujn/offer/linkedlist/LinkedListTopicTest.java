@@ -64,6 +64,17 @@ class LinkedListTopicTest {
         assertSame(common, solution.getIntersectionNode(headA, headB));
     }
 
+    @Test
+    void shouldFindCycleEntryNode() {
+        CycleEntryNode solution = new CycleEntryNode();
+        ListNode head = buildList(3, 2, 0, -4);
+        ListNode tail = tail(head);
+        ListNode entry = head.next;
+        tail.next = entry;
+
+        assertSame(entry, solution.detectCycle(head));
+    }
+
     private ListNode buildList(int... values) {
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy;

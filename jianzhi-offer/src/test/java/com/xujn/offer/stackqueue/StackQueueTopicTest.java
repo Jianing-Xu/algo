@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class StackQueueTopicTest {
 
@@ -37,6 +38,7 @@ class StackQueueTopicTest {
         MaxQueue maxQueue = new MaxQueue();
         CountOccurrencesInSortedArray countOccurrencesInSortedArray = new CountOccurrencesInSortedArray();
         MissingNumber missingNumber = new MissingNumber();
+        SlidingWindowMaximum slidingWindowMaximum = new SlidingWindowMaximum();
 
         assertTrue(validateStackSequences.validate(
                 new int[]{1, 2, 3, 4, 5},
@@ -53,5 +55,7 @@ class StackQueueTopicTest {
         assertEquals(3, maxQueue.maxValue());
         assertEquals(2, countOccurrencesInSortedArray.search(new int[]{5, 7, 7, 8, 8, 10}, 8));
         assertEquals(2, missingNumber.missingNumber(new int[]{0, 1, 3}));
+        assertArrayEquals(new int[]{3, 3, 5, 5, 6, 7},
+                slidingWindowMaximum.maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3));
     }
 }

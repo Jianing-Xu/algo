@@ -60,6 +60,8 @@ class ArrayTopicTest {
         IsStraight isStraight = new IsStraight();
         InversePairs inversePairs = new InversePairs();
         StockMaxProfit stockMaxProfit = new StockMaxProfit();
+        TwoSumInSortedArray twoSumInSortedArray = new TwoSumInSortedArray();
+        ContinuousSequenceSum continuousSequenceSum = new ContinuousSequenceSum();
 
         assertEquals(2, majorityElement.findMajority(new int[]{1, 2, 3, 2, 2, 2, 5, 4, 2}));
         assertEquals(new HashSet<>(List.of(1, 2)), new HashSet<>(leastKNumbers.getLeastNumbers(new int[]{3, 2, 1}, 2)));
@@ -70,5 +72,7 @@ class ArrayTopicTest {
         assertTrue(isStraight.isStraight(new int[]{0, 0, 1, 2, 5}));
         assertEquals(5, inversePairs.count(new int[]{7, 5, 6, 4}));
         assertEquals(11, stockMaxProfit.maxProfit(new int[]{9, 11, 8, 5, 7, 12, 16, 14}));
+        assertArrayEquals(new int[]{2, 7}, twoSumInSortedArray.twoSum(new int[]{1, 2, 4, 7, 11, 15}, 9));
+        assertArrayEquals(new int[][]{{2, 3, 4}, {4, 5}}, continuousSequenceSum.findContinuousSequence(9));
     }
 }

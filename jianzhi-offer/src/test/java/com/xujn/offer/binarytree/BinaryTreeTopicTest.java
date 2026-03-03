@@ -34,6 +34,7 @@ class BinaryTreeTopicTest {
         KthLargestInBst kthLargestInBst = new KthLargestInBst();
         LowestCommonAncestorBst lowestCommonAncestorBst = new LowestCommonAncestorBst();
         LowestCommonAncestorBinaryTree lowestCommonAncestorBinaryTree = new LowestCommonAncestorBinaryTree();
+        LevelOrderZigzagTraversal levelOrderZigzagTraversal = new LevelOrderZigzagTraversal();
 
         TreeNode root = node(8,
                 node(8, node(9), node(2, node(4), node(7))),
@@ -73,6 +74,9 @@ class BinaryTreeTopicTest {
         TreeNode treeRoot = node(3, node(5, node(6), node(2, node(7), node(4))), node(1, node(0), node(8)));
         assertEquals(5, lowestCommonAncestorBinaryTree.lowestCommonAncestor(
                 treeRoot, treeRoot.left, treeRoot.left.right.right).value);
+        assertEquals(List.of(List.of(3), List.of(20, 9), List.of(15, 7)),
+                levelOrderZigzagTraversal.zigzagLevelOrder(
+                        node(3, node(9), node(20, node(15), node(7)))));
     }
 
     private TreeNode node(int value) {

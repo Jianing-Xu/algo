@@ -1,17 +1,17 @@
 # 《剑指 Offer》题型归纳与实现说明
 
-这个模块按《剑指 Offer》的高频题型组织代码，目标是把书里最常见、最有代表性的题目整理成可运行实现，并把解题模型沉淀成可复用套路。
+这个模块按《剑指 Offer》的高频题型组织代码，当前共有 78 个源码文件。目标是把书里最常见、最有代表性的题目整理成可运行实现，并把解题模型沉淀成可复用套路。
 
 ## 目录结构
 
-- `array`：数组、矩阵、排序拼接、归并统计、贪心扫描
-- `string`：字符串替换、翻转旋转、全排列、滑动窗口、回溯搜索
-- `linkedlist`：倒序打印、删除节点、反转、合并、复杂链表复制、相交链表
-- `binarytree`：重建、镜像、对称、层序、序列化、路径和、LCA、BST 特性
-- `stackqueue`：两栈实现队列、最小栈、最大值队列、栈序列校验
-- `searchsort`：旋转数组二分、有序数组计数、缺失数字
-- `recursiondp`：斐波那契、剪绳子、机器人数位 DP、数位枚举、丑数、约瑟夫环
-- `bit`：位运算统计、无四则运算加法
+- `array`：数组、矩阵、排序拼接、归并统计、双指针窗口
+- `string`：替换、旋转、翻转、正则匹配、数值解析、回溯搜索
+- `linkedlist`：倒序打印、删除节点、反转、合并、复杂链表复制、相交链表、环入口
+- `binarytree`：重建、镜像、对称、层序、zigzag、序列化、路径和、LCA、BST 特性
+- `stackqueue`：两栈实现队列、最小栈、最大值队列、滑动窗口、栈序列校验
+- `searchsort`：旋转数组二分、有序数组计数、缺失数字、位数定位
+- `recursiondp`：斐波那契、青蛙跳台阶、剪绳子、机器人数位 DP、骰子概率、丑数、约瑟夫环
+- `bit`：位运算统计、唯一数问题、无四则运算加法
 - `design`：字符流、数据流中位数
 
 ## 1. 数组与矩阵
@@ -31,6 +31,8 @@
 - `InversePairs`：归并排序在合并阶段统计跨区间逆序对。
 - `IsStraight`：大小王当通配，关键判断重复和最大最小差值。
 - `StockMaxProfit`：单次交易模型，本质是维护历史最低买入价。
+- `TwoSumInSortedArray`：有序数组双指针逼近目标和。
+- `ContinuousSequenceSum`：滑动窗口维护连续正整数区间。
 
 面试关注点：
 
@@ -49,6 +51,9 @@
 - `FirstUniqueCharacter`：顺序统计频次，保留第一次出现顺序。
 - `ReverseWords`：先标准化空格，再逆序拼接单词。
 - `LeftRotateString`：子串拼接，或面试时延展到三次翻转法。
+- `RegexMatcher`：`dp[i][j]` 表示前缀是否匹配，重点处理 `*`。
+- `ValidNumberString`：有限状态可做，这里用标记位扫描。
+- `StringToInteger`：模拟 `atoi`，覆盖符号、空格和溢出。
 
 面试关注点：
 
@@ -67,6 +72,7 @@
 - `MergeSortedLists`：双指针合并两个有序链表。
 - `CopyComplexList`：原地穿插复制节点，再拆分链表。
 - `FirstCommonNode`：双指针分别走完两条链表后自动对齐长度差。
+- `CycleEntryNode`：快慢指针相遇后再走一轮定位入口。
 
 面试关注点：
 
@@ -92,6 +98,7 @@
 - `KthLargestInBst`：反向中序直接定位第 `k` 大。
 - `LowestCommonAncestorBst`：利用 BST 有序性单路下降。
 - `LowestCommonAncestorBinaryTree`：普通树用后序返回匹配信息。
+- `LevelOrderZigzagTraversal`：层序遍历叠加单双层反向输出。
 
 面试关注点：
 
@@ -107,6 +114,7 @@
 - `MinStack`：同步最小值栈，`min()` 保持 `O(1)`。
 - `ValidateStackSequences`：模拟压栈出栈过程校验序列是否合法。
 - `MaxQueue`：单调队列维护当前窗口或队列最大值。
+- `SlidingWindowMaximum`：单调队列维护滑动窗口最大值。
 
 面试关注点：
 
@@ -118,17 +126,23 @@
 核心识别点：先写出递归定义，再压缩成迭代 DP；位运算题重点是利用二进制性质做常数级优化。
 
 - `FibonacciSequence`：递推滚动变量。
+- `NumWays`：本质是斐波那契变体，注意取模。
 - `CuttingRope`：数学拆分与 DP 都能做，优先识别 3 的贪心拆分。
 - `MovingCount`：DFS/BFS + 数位和约束。
 - `PowerFunction`：快速幂。
 - `PrintOneToMaxNDigits`：模拟大数递归枚举，避免整数溢出。
 - `TranslateNumber`：按两位是否可翻译做线性 DP。
 - `UglyNumber`：三个指针生成丑数序列。
+- `DicesProbability`：从 1 个骰子分布递推到 `n` 个骰子分布。
 - `NumberOfOneBits`：`n & (n - 1)` 每次消掉最低位的 1。
 - `LastRemainingInCircle`：约瑟夫环递推化简。
 - `SumOneToN`：利用短路递归绕开显式循环与分支。
 - `AddWithoutArithmetic`：异或算无进位和，与运算左移算进位。
 - `MedianFinder`：双堆维护数据流上下半区。
+- `SingleNumbers`：先整体异或，再按最低区分位分组。
+- `SingleNumberII`：逐位统计后对 3 取模还原答案。
+- `FindNthDigit`：先定位落在哪一段位数，再找具体数字。
+- `NumberEqualIndex`：有序数组中二分定位 `nums[i] == i`。
 
 面试关注点：
 
@@ -144,18 +158,18 @@
 mvn test
 ```
 
-## 本轮补齐的专题
+## 当前覆盖说明
 
-按你指定的四类，目前已覆盖：
+按《剑指 Offer》常见高频题型，目前已实现的核心覆盖包括：
 
-1. 二叉树专题：`SerializeBinaryTree`、`BalancedBinaryTree`、`LowestCommonAncestorBst`、`LowestCommonAncestorBinaryTree`
-2. 数组专题：`InversePairs`、`MedianFinder`、`IsStraight`
-3. 数学专题：`LastRemainingInCircle`、`SumOneToN`、`AddWithoutArithmetic`
-4. 设计专题：`FirstUniqueCharacterStream`、`MaxQueue`、`StockMaxProfit`
+1. 二叉树专题：重建、镜像、对称、层序、zigzag、序列化/反序列化、BST 后序校验、BST 转双向链表、平衡树、最近公共祖先
+2. 数组专题：二维查找、顺时针打印、多数元素、最小 `k` 个数、最大子数组、逆序对、构建乘积数组、扑克牌顺子、和为 `s` 的数字与连续序列、股票最大利润
+3. 数学专题：斐波那契、青蛙跳台阶、剪绳子、快速幂、丑数、约瑟夫环、求 `1..n` 和、数字翻译、骰子概率
+4. 设计专题：字符流首个不重复字符、数据流中位数、最大值队列、滑动窗口最大值
 
 ## 后续可继续补齐
 
-如果要继续向“整本书尽量完整覆盖”推进，下一批优先级较高的是：
+如果还要继续向“接近逐题完整覆盖”推进，下一批优先级较高的是：
 
 1. 二叉树专题：按层 zigzag 打印、二叉树中两个节点的距离、路径和变体。
 2. 数组专题：和为 `s` 的两个数字、和为 `s` 的连续正数序列、数字出现次数系列。

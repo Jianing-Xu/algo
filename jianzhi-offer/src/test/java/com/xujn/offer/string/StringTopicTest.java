@@ -45,9 +45,17 @@ class StringTopicTest {
         FirstUniqueCharacter firstUniqueCharacter = new FirstUniqueCharacter();
         ReverseWords reverseWords = new ReverseWords();
         LeftRotateString leftRotateString = new LeftRotateString();
+        RegexMatcher regexMatcher = new RegexMatcher();
+        ValidNumberString validNumberString = new ValidNumberString();
+        StringToInteger stringToInteger = new StringToInteger();
 
         assertEquals('b', firstUniqueCharacter.firstUniqChar("abaccdeff"));
         assertEquals("blue is sky the", reverseWords.reverseWords("  the sky is blue  "));
         assertEquals("cdefgab", leftRotateString.reverseLeftWords("abcdefg", 2));
+        assertTrue(regexMatcher.isMatch("aaa", "a*a"));
+        assertFalse(regexMatcher.isMatch("aa", "a"));
+        assertTrue(validNumberString.isNumber(" -1E-16 "));
+        assertFalse(validNumberString.isNumber("12e+5.4"));
+        assertEquals(-42, stringToInteger.strToInt("   -42"));
     }
 }
