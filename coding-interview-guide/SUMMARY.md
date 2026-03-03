@@ -4,12 +4,12 @@
 
 ## 目录结构
 
-- `stackqueue`：栈、队列、单调队列
+- `stackqueue`：栈、队列、单调队列、最大矩形、可见山峰、猫狗队列、MaxTree、窗口统计
 - `linkedlist`：链表反转、回文判断、环检测、链表分区、随机指针复制
-- `binarytree`：非递归遍历、序列化与反序列化、LCA、最大 BST 子树、zigzag 层序
-- `recursiondp`：递推优化、动态规划、换钱、LIS、编辑距离
+- `binarytree`：非递归遍历、序列化与反序列化、LCA、最大 BST 子树、zigzag 层序、重建、后继节点、完全树计数
+- `recursiondp`：递推优化、动态规划、换钱、LIS、编辑距离、打气球、N 皇后、汉诺塔、博弈型 DP
 - `string`：旋转词、滑动窗口
-- `arraymatrix`：转圈打印、最大子数组和
+- `arraymatrix`：转圈打印、最大子数组和、子矩阵最大和、最长累加和、TopK、BFPRT
 - `verifier`：对数器、随机数据生成、暴力解校验
 
 ## 1. 栈和队列
@@ -19,11 +19,19 @@
 - `GetMinStack`：额外维护一个同步最小栈，把 `getMin()` 降到 `O(1)`。
 - `QueueByStacks`：一个栈负责入队，一个栈负责出队；只有出队栈为空时才搬运。
 - `SlidingWindowMaximum`：单调双端队列维护候选最大值，典型窗口模型。
+- `MaximalRectangle`：将二维矩阵逐行压成柱状图，再套单调栈。
+- `VisibleMountainPairs`：环形结构 + 单调栈，处理重复高度时要合并计数。
+- `CatDogQueue`：两个队列加时间戳，分别维护局部顺序和全局顺序。
+- `MaxTree`：每个节点挂到左右第一个更大值中较小的那个下面，本质是笛卡尔树。
+- `SubarrayCountWithBoundedDiff`：双端队列同时维护窗口最大值和最小值。
 
 面试关注点：
 
 - 是否能说清楚为什么每个元素最多进队和出队一次。
 - 是否能处理空结构、重复值、窗口边界。
+- 能否把二维问题压缩成一维单调栈模型。
+- 面向对象题里是否能把“业务规则”和“出队顺序”拆清楚。
+- 遇到“区间最大值/最小值 + 统计”时能否想到双端队列维护窗口。
 
 ## 2. 链表
 
@@ -50,11 +58,19 @@
 - `LowestCommonAncestor`：后序信息汇总模型。
 - `BiggestBinarySearchSubtree`：树形 DP，返回“最大 BST 头节点 + 子树范围 + 是否 BST”。
 - `ZigzagLevelOrderTraversal`：双端队列实现层序方向切换。
+- `RebuildBinaryTree`：利用先序定位根节点，用中序切分左右子树。
+- `InOrderSuccessor`：分“有右子树”和“向上找第一个把自己当左孩子的祖先”两种情况。
+- `CompleteBinaryTreeNodeCounter`：比较左右子树高度，跳过满二叉树部分。
+- `LongestPathSum`：前缀和 + 层号哈希表，适合“从上往下”的路径统计。
+- `MaxDistanceInTree`：标准树形 DP，同时返回高度和最大距离。
+- `TopologyContainment`：判断是否包含另一棵树的全部拓扑结构，不要求是完整子树。
 
 面试关注点：
 
 - 非递归中序是否能熟练写出“先一路压左，再弹栈访问”的骨架。
 - 序列化时是否保留空节点，否则无法唯一反序列化。
+- 树形 DP 题里返回信息是否足够且不冗余。
+- 完全二叉树计数能否从 `O(n)` 优化到 `O(log^2 n)`。
 
 ## 4. 递归与动态规划
 
@@ -65,6 +81,10 @@
 - `MinCoins`：完全背包模型，求最少张数。
 - `LongestIncreasingSubsequence`：`ends[] + 二分` 将复杂度降到 `O(n log n)`。
 - `EditDistance`：经典二维 DP，统一插入、删除、替换三种操作。
+- `BurstBalloons`：区间 DP，枚举“最后打爆哪一个气球”。
+- `NQueens`：既有普通回溯版，也有位运算优化版。
+- `HanoiStateStep`：根据当前状态反推它是否在最优路径上，以及是第几步。
+- `CardGameWinner`：先手/后手双表 DP，典型博弈模型。
 
 面试关注点：
 
@@ -90,11 +110,17 @@
 
 - `SpiralOrderPrinter`：按四条边分层收缩。
 - `SubarrayMaxSum`：Kadane 算法，决定“以当前位置结尾的最好答案”。
+- `MaxSubmatrixSum`：枚举行边界后压缩列，再做一维 Kadane。
+- `LongestSubarraySumEqualsK`：前缀和第一次出现的位置决定最长长度。
+- `TopKElements`：小根堆维护最大的 `k` 个数。
+- `BfprtSelector`：中位数的中位数保证线性时间选择第 `k` 小。
 
 面试关注点：
 
 - 单行、单列、空矩阵边界是否正确。
 - 最大子数组和全负数场景是否成立。
+- 前缀和类题目是否意识到“最早出现的位置”才最有价值。
+- TopK 和第 k 小问题是否能区分堆解法、快排选择、BFPRT 的适用场景。
 
 ## 7. 对数器
 
@@ -110,9 +136,18 @@
 - `RandomCaseGenerator`：负责随机数组、随机字符串、随机参数。
 - `AlgorithmComparator`：统一执行“随机样本 -> 暴力解 -> 优化解 -> 比对”流程。
 - `AlgorithmComparatorTest`：示范了三个典型对数器场景：
+- `AlgorithmComparatorTest`：示范了三个典型对数器场景：
   - 滑动窗口最大值：单调队列 vs 暴力枚举窗口。
   - 最长无重复子串：滑动窗口 vs 双重循环枚举。
   - 最大子数组和：Kadane vs 所有区间枚举。
+- `MoreComparatorTest`：再补两个更偏技巧型的场景：
+  - 可见山峰：单调栈解法 vs 两点可见性暴力枚举。
+  - 最大矩形：柱状图压缩 + 单调栈 vs 枚举所有子矩形。
+- `BookComparatorTest`：新增四类更贴近书中题型的对数器：
+  - `max-min<=num` 子数组数量：窗口优化 vs 暴力枚举。
+  - 子矩阵最大和：二维压缩 vs 枚举所有子矩阵。
+  - 累加和等于 `k` 的最长子数组：前缀和哈希 vs 双循环。
+  - BFPRT：线性选择 vs 排序取第 `k` 小。
 
 面试和刷题里的实际价值：
 
@@ -132,7 +167,7 @@ mvn test
 
 如果继续按书完整扩展，优先补下面几类：
 
-1. 栈与队列专题：最大矩形、可见山峰、猫狗队列。
-2. 二叉树专题：先序中序重建、后继节点、完全二叉树节点数。
-3. 动态规划专题：打气球、N 皇后、汉诺塔拓展、博弈型 DP。
-4. 数组专题：子矩阵最大和、最长累加和、TopK、BFPRT。
+1. 栈与队列专题：单调栈衍生题继续补，如 MaxTree 的数组验证器、窗口中位数。
+2. 二叉树专题：序列化变体、修复 BST、最近公共祖先的多解法比较。
+3. 动态规划专题：换钱方法数、最长公共子序列、布尔表达式求值。
+4. 数组专题：自然数数组排序、奇偶调整、最长递增子序列的序列恢复。

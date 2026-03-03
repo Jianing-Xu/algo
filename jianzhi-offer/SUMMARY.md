@@ -4,14 +4,15 @@
 
 ## 目录结构
 
-- `array`：数组、矩阵、排序拼接、贪心扫描
-- `string`：字符串替换、全排列、滑动窗口、回溯搜索
-- `linkedlist`：倒序打印、删除节点、反转、合并、复杂链表复制
-- `binarytree`：重建、镜像、对称、层序、路径和、BST 特性
-- `stackqueue`：两栈实现队列、最小栈、栈序列校验
-- `searchsort`：旋转数组二分
-- `recursiondp`：斐波那契、剪绳子、机器人数位 DP、数位枚举、丑数
-- `bit`：位运算统计
+- `array`：数组、矩阵、排序拼接、归并统计、贪心扫描
+- `string`：字符串替换、翻转旋转、全排列、滑动窗口、回溯搜索
+- `linkedlist`：倒序打印、删除节点、反转、合并、复杂链表复制、相交链表
+- `binarytree`：重建、镜像、对称、层序、序列化、路径和、LCA、BST 特性
+- `stackqueue`：两栈实现队列、最小栈、最大值队列、栈序列校验
+- `searchsort`：旋转数组二分、有序数组计数、缺失数字
+- `recursiondp`：斐波那契、剪绳子、机器人数位 DP、数位枚举、丑数、约瑟夫环
+- `bit`：位运算统计、无四则运算加法
+- `design`：字符流、数据流中位数
 
 ## 1. 数组与矩阵
 
@@ -26,6 +27,10 @@
 - `MaxSubarraySum`：Kadane 算法。
 - `MinNumberByConcatenation`：核心是自定义排序规则 `a+b < b+a`。
 - `MaxValueInGrid`：二维 DP，状态是走到当前位置的最大价值。
+- `ConstructProductArray`：前缀积 + 后缀积，避免除法。
+- `InversePairs`：归并排序在合并阶段统计跨区间逆序对。
+- `IsStraight`：大小王当通配，关键判断重复和最大最小差值。
+- `StockMaxProfit`：单次交易模型，本质是维护历史最低买入价。
 
 面试关注点：
 
@@ -41,6 +46,9 @@
 - `PermutationGenerator`：排序 + 去重剪枝生成全排列。
 - `LongestSubstringWithoutRepeat`：滑动窗口维护无重复区间。
 - `PathInMatrix`：DFS 搜索矩阵路径，配合访问标记避免重复走格子。
+- `FirstUniqueCharacter`：顺序统计频次，保留第一次出现顺序。
+- `ReverseWords`：先标准化空格，再逆序拼接单词。
+- `LeftRotateString`：子串拼接，或面试时延展到三次翻转法。
 
 面试关注点：
 
@@ -58,6 +66,7 @@
 - `ReverseLinkedList`：三指针原地反转。
 - `MergeSortedLists`：双指针合并两个有序链表。
 - `CopyComplexList`：原地穿插复制节点，再拆分链表。
+- `FirstCommonNode`：双指针分别走完两条链表后自动对齐长度差。
 
 面试关注点：
 
@@ -77,6 +86,12 @@
 - `VerifyPostorderOfBst`：后序最后一个值是根，左右区间满足 BST 约束。
 - `PathSumInTree`：DFS 维护路径和路径栈。
 - `BstToDoublyLinkedList`：中序遍历把 BST 原地串成双向链表。
+- `SerializeBinaryTree`：先序序列化 + 空节点占位，支持无损重建。
+- `TreeDepth`：递归定义树高。
+- `BalancedBinaryTree`：后序计算高度并同步剪枝。
+- `KthLargestInBst`：反向中序直接定位第 `k` 大。
+- `LowestCommonAncestorBst`：利用 BST 有序性单路下降。
+- `LowestCommonAncestorBinaryTree`：普通树用后序返回匹配信息。
 
 面试关注点：
 
@@ -91,6 +106,7 @@
 - `CQueue`：输入栈 + 输出栈实现队列。
 - `MinStack`：同步最小值栈，`min()` 保持 `O(1)`。
 - `ValidateStackSequences`：模拟压栈出栈过程校验序列是否合法。
+- `MaxQueue`：单调队列维护当前窗口或队列最大值。
 
 面试关注点：
 
@@ -109,6 +125,10 @@
 - `TranslateNumber`：按两位是否可翻译做线性 DP。
 - `UglyNumber`：三个指针生成丑数序列。
 - `NumberOfOneBits`：`n & (n - 1)` 每次消掉最低位的 1。
+- `LastRemainingInCircle`：约瑟夫环递推化简。
+- `SumOneToN`：利用短路递归绕开显式循环与分支。
+- `AddWithoutArithmetic`：异或算无进位和，与运算左移算进位。
+- `MedianFinder`：双堆维护数据流上下半区。
 
 面试关注点：
 
@@ -124,11 +144,20 @@
 mvn test
 ```
 
-## 扩展建议
+## 本轮补齐的专题
 
-如果继续按书完整补齐，可以优先扩展下面几类：
+按你指定的四类，目前已覆盖：
 
-1. 二叉树专题：序列化/反序列化、平衡树、最近公共祖先。
-2. 数组专题：逆序对、数据流中位数、扑克牌顺子。
-3. 数学专题：约瑟夫环、求 1 到 n 的和、不用加减乘除做加法。
-4. 设计专题：字符流第一个不重复字符、队列最大值、股票最大利润。
+1. 二叉树专题：`SerializeBinaryTree`、`BalancedBinaryTree`、`LowestCommonAncestorBst`、`LowestCommonAncestorBinaryTree`
+2. 数组专题：`InversePairs`、`MedianFinder`、`IsStraight`
+3. 数学专题：`LastRemainingInCircle`、`SumOneToN`、`AddWithoutArithmetic`
+4. 设计专题：`FirstUniqueCharacterStream`、`MaxQueue`、`StockMaxProfit`
+
+## 后续可继续补齐
+
+如果要继续向“整本书尽量完整覆盖”推进，下一批优先级较高的是：
+
+1. 二叉树专题：按层 zigzag 打印、二叉树中两个节点的距离、路径和变体。
+2. 数组专题：和为 `s` 的两个数字、和为 `s` 的连续正数序列、数字出现次数系列。
+3. 数学专题：骰子点数概率、整数拆分取模、大数乘法/字符串数值校验。
+4. 设计专题：LRU/LFU、前缀树、支持 `max/min` 的滑动窗口结构变体。
